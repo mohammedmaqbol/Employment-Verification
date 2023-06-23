@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import emailjs from '@emailjs/browser';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../assets/css/style.css';
 import '../assets/css/responsive.css';
@@ -69,6 +69,7 @@ function EmploymentVerification() {
             const data = {
                 companyname: companyname,
                 employeename: employeename,
+                employeeposition: employeeposition,
                 startdateofemployment: startdateofemployment,
                 enddateofemployment: enddateofemployment,
                 numberofhoursworked: numberofhoursworked,
@@ -79,13 +80,14 @@ function EmploymentVerification() {
                 title: title,
                 contactNumber: contactNumber
             }
-            try {
-                const response = await axios.post("http://localhost:5000/verification", data);
-                //navigate('/thanks');
-                console.log(response.data);
-            } catch (error) {
-                console.log(error);
-            }
+            emailjs.send('service_7a1pr9e', 'template_jqeek9w', data, 'MedwSOupMIQJ2eyF_')
+                .then((result) => {
+                    if (result) {
+                        window.location.href = '/thanks';
+                    }
+                }, (error) => {
+                    window.location.href = '/'
+                })
         }
 
     };

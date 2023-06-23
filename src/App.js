@@ -9,8 +9,8 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route exact path="/verification" element={<EmploymentVerification />} />
-          <Route exact path="/verification/thanks" element={<ThanksPage />} />
+          <Route exact path="/" element={<EmploymentVerification />} />
+          <Route exact path="/thanks" element={<ThanksPage />} />
         </Routes>
       </BrowserRouter></>
   );
